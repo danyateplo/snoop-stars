@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNOOP STARS — Admin</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="admin.js"></script>
+</head>
+<body>
+  <div id="login-section" class="login-form">
+    <h2>Вход в админ-панель</h2>
+    <input type="password" id="password-input" class="login-input" placeholder="Пароль">
+    <button id="login-button" class="login-button">Войти</button>
+  </div>
+  
+  <div id="admin-section" class="admin-container" style="display: none;">
+    <h1 style="text-align: center; margin-bottom: 20px;">Админ-панель SNOOP STARS</h1>
+    
+    <section>
+      <h2>Реквизиты для оплаты</h2>
+      <div class="input-group">
+        <label class="label">Ссылка для связи</label>
+        <input type="text" id="owner-link" class="admin-input" placeholder="https://t.me/danyarussian">
+      </div>
+      <div class="input-group">
+        <label class="label">Банк</label>
+        <input type="text" id="bank-input" class="admin-input" placeholder="Тинькофф">
+      </div>
+      <div class="input-group">
+        <label class="label">Номер телефона</label>
+        <input type="text" id="card-number-input" class="admin-input" placeholder="8 (995) 769 26 13">
+      </div>
+      <div class="input-group">
+        <label class="label">Владелец карты</label>
+        <input type="text" id="card-holder-input" class="admin-input" placeholder="Даниил Ш.">
+      </div>
+    </section>
+
+    <section>
+      <h2>Цены на пакеты</h2>
+      <div id="prices-container">
+        <!-- Цены будут добавлены через JavaScript -->
+      </div>
+    </section>
+    
+    <button id="save-settings" class="save-button">Сохранить настройки</button>
+    
+    <p class="caption">Настройки сохраняются в localStorage этого браузера. Чтобы сделать глобально — нужен сервер.</p>
+  </div>
+
+  <style>
+    .login-form {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    
+    .login-input {
+      width: 100%;
+      padding: 14px 16px;
+      margin: 15px 0;
+      border: 1px solid var(--border);
+      background: #0f201a;
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 16px;
+    }
+    
+    .login-button {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: #0f221b;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    .admin-container {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    .admin-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      background: #0f201a;
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 15px;
+    }
+    
+    .save-button {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: #0f221b;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    
+    .price-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 0 10px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    
+    .price-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    
+    .price-input {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: #0f201a;
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 15px;
+    }
+    
+    .remove-price {
+      background: #ff4757;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #add-price {
+      width: 100%;
+      padding: 12px;
+      background: var(--pill);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    
+    @media (max-width: 600px) {
+      .login-form {
+        margin: 50px 20px;
+        padding: 20px;
+      }
+      
+      .admin-container {
+        padding: 15px;
+      }
+      
+      .price-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      
+      .price-header {
+        display: none;
+      }
+    }
+  </style>
+</body>
+</html>

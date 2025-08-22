@@ -1,0 +1,16 @@
+{
+  "owner": "https://t.me/danyarussian",
+  "bank": "Тинькофф",
+  "cardNumber": "8 995 769 26 13",
+  "cardHolder": "Даниил Ш.",
+  "prices": [
+    {
+      "stars": 50,
+      "price": 70
+    },
+    {
+      "stars": 100,
+      "price": 140
+    },
+  ]
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>SNOOP STARS</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <header class="card__header">
+        <h1 class="title">SNOOP STARS</h1>
+        <button class="icon-btn" id="helpBtn" aria-label="Помощь">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm0 15a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Zm1.2-3.9-.63.45c-.43.32-.57.56-.57 1.2h-1.8c0-1.38.36-2 .99-2.46l.75-.54c.42-.3.66-.66.66-1.09 0-.82-.68-1.5-1.5-1.5s-1.5.68-1.5 1.5H7.5a3.5 3.5 0 0 1 7 0c0 1.02-.49 1.86-1.3 2.49Z" fill="currentColor"/>
+          </svg>
+        </button>
+      </header>
+
+      <div class="form">
+        <label class="label">Ваш Telegram username</label>
+        <div class="input input--with-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18" class="input__icon">
+            <path fill="currentColor" d="M12 12a5 5 0 1 0 .001-10.001A5 5 0 0 0 12 12Zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5Z"/>
+          </svg>
+          <input id="username" type="text" placeholder="@username" />
+        </div>
+
+        <div class="label" style="margin-top: 20px;">Выберите пакет звёзд</div>
+        <div class="grid">
+          <!-- buttons inserted by JS based on settings -->
+        </div>
+
+        <div class="cols">
+          <div class="col">
+            <div class="label-small">Количество звёзд</div>
+            <div class="input input--readonly">
+              <svg viewBox="0 0 24 24" width="18" height="18" class="input__icon">
+                <path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+              <input id="starsCount" type="text" value="" placeholder="★ мин. 50" readonly />
+            </div>
+          </div>
+          <div class="col">
+            <div class="label-small">Сумма к оплате</div>
+            <div class="input input--readonly">
+              <input id="amount" type="text" value="0.00" readonly />
+              <div class="suffix">₽</div>
+            </div>
+          </div>
+        </div>
+
+        <button id="payBtn" class="btn btn-primary" disabled>Перейти к оплате</button>
+
+        <p class="caption">После оплаты отправьте скриншот в Telegram для подтверждения</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal__content">
+      <h3>Оплата по реквизитам</h3>
+      <p>Для получения звёзд произведите оплату по указанным реквизитам:</p>
+      
+      <div class="payment-details">
+        <div class="payment-line">
+          <span class="payment-label">Банк:</span>
+          <span class="payment-value" id="bank-name">Тинькофф</span>
+        </div>
+        <div class="payment-line">
+          <span class="payment-label">Номер карты:</span>
+          <span class="payment-value" id="card-number">5536 9138 1234 5678</span>
+        </div>
+        <div class="payment-line">
+          <span class="payment-label">Получатель:</span>
+          <span class="payment-value" id="card-holder">Иван Иванов</span>
+        </div>
+        <div class="payment-line">
+          <span class="payment-label">Сумма:</span>
+          <span class="payment-value" id="payment-sum">0.00 ₽</span>
+        </div>
+        <div class="payment-line">
+          <span class="payment-label">Назначение:</span>
+          <span class="payment-value" id="payment-purpose">Звёзды для @username</span>
+        </div>
+      </div>
+      
+      <p class="payment-notice">После оплаты обязательно отправьте скриншот чека в Telegram</p>
+      
+      <div class="modal-buttons">
+        <a class="btn btn-primary" id="contact-link" target="_blank" rel="noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+            <path d="M12 0c-6.627 0-12 4.975-12 11.111 0 3.497 1.745 6.616 4.472 8.652v4.237l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111 0-6.136-5.373-11.111-12-11.111zm5.797 17.305l-2.118-2.153-2.285 1.566-4.16-4.213 9.611-5.919-1.048 11.719z"/>
+          </svg>
+          Написать в Telegram
+        </a>
+        <button class="btn btn-secondary" id="copy-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+          </svg>
+          Скопировать номер
+        </button>
+        <button class="btn" id="closeModal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
